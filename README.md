@@ -1,7 +1,3 @@
-Here's a customized `README.md` file for your **Glaucoma Eye Disease Detection using ML** project with multiple models like ResNet50, InceptionV3, EfficientNetB7, and VGG16:
-
----
-
 # Glaucoma Eye Disease Detection using Machine Learning (GlaucoVision)
 
 ## 🧠 About the Project
@@ -132,6 +128,3 @@ We welcome contributors! Follow these steps:
 
 If you face any issues or want to contribute ideas, feel free to open a [GitHub Issue](https://github.com/<your-repo>/issues).
 
----
-
-Let me know if you'd like a logo, badges, or screenshots included in the README.
