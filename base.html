@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Glaucoma Detection System{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white">
+    <!-- Navigation -->
+    <nav class="bg-black bg-opacity-30 backdrop-filter backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="{{ url_for('home') }}" class="text-xl font-bold">GlaucomaAI</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="{{ url_for('home') }}" class="hover:bg-blue-700 px-3 py-2 rounded-md">Home</a>
+                    <a href="{{ url_for('about') }}" class="hover:bg-blue-700 px-3 py-2 rounded-md">About</a>
+                    <a href="{{ url_for('eye_check') }}" class="hover:bg-blue-700 px-3 py-2 rounded-md">Eye Check</a>
+                    <a href="{{ url_for('contact') }}" class="hover:bg-blue-700 px-3 py-2 rounded-md">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+                {% for category, message in messages %}
+                    <div class="rounded-md p-4 mb-4 {% if category == 'error' %}bg-red-500{% else %}bg-green-500{% endif %} bg-opacity-90">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-30 backdrop-filter backdrop-blur-lg mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="text-center text-gray-300">
+                <p>&copy; 2024 GlaucomaAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html> 

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}About - Glaucoma Detection System{% endblock %}
+
+{% block content %}
+<div class="space-y-16">
+    <!-- What is Glaucoma Section -->
+    <section>
+        <h2 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+            What is Glaucoma?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+                <p class="text-gray-300">
+                    Glaucoma is a group of eye conditions that damage the optic nerve, which is vital for good vision. This damage is often caused by abnormally high pressure in your eye.
+                </p>
+                <p class="text-gray-300">
+                    It's one of the leading causes of blindness for people over 60 years old. But blindness from glaucoma can often be prevented with early treatment.
+                </p>
+                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                    <li>Affects peripheral vision first</li>
+                    <li>Often has no symptoms in early stages</li>
+                    <li>Can lead to permanent vision loss if untreated</li>
+                    <li>Regular screening is crucial for early detection</li>
+                </ul>
+            </div>
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-6">
+                <img src="{{ url_for('static', filename='images/OIP.jpg') }}" alt="Glaucoma Diagram" class="rounded-lg shadow-lg" style="width: 100%;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Solution Section -->
+    <section>
+        <h2 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+            Our Solution
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-6">
+                <img src="{{ url_for('static', filename='images/Development-of-Glaucoma-detection.webp') }}" alt="AI Detection Process" class="rounded-lg shadow-lg" style="height: 100%;">
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-2xl font-semibold text-blue-400">How Our AI Works</h3>
+                <p class="text-gray-300">
+                    Our system uses deep learning algorithms to analyze retinal images and detect signs of glaucoma. The AI model has been trained on thousands of validated cases to ensure high accuracy.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-500 p-2 rounded-lg">
+                            <i class="fas fa-camera text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Image Analysis</h4>
+                            <p class="text-gray-300">Advanced computer vision techniques analyze the optic disc and cup</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-500 p-2 rounded-lg">
+                            <i class="fas fa-chart-line text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Pattern Recognition</h4>
+                            <p class="text-gray-300">Machine learning algorithms identify patterns associated with glaucoma</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-500 p-2 rounded-lg">
+                            <i class="fas fa-percentage text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Risk Assessment</h4>
+                            <p class="text-gray-300">Provides probability scores for glaucoma presence</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+{% endblock %} 

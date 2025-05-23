@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Eye Check - Glaucoma Detection System{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 text-center">
+        Glaucoma Detection Check
+    </h1>
+
+    <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-8">
+        <form method="POST" enctype="multipart/form-data" class="space-y-8" x-data="{ fileName: '' }">
+            <!-- Image Upload Section -->
+            <div class="space-y-4">
+                <h3 class="text-2xl font-semibold text-blue-400">Upload Fundus Image</h3>
+                <div class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center">
+                    <input type="file" name="file" id="file" accept="image/*" required
+                        class="hidden" x-on:change="fileName = $event.target.files[0].name">
+                    <label for="file" class="cursor-pointer">
+                        <div class="space-y-4">
+                            <div class="text-blue-400 text-4xl">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <div class="text-gray-300">
+                                <p class="font-semibold">Click to upload or drag and drop</p>
+                                <p class="text-sm">Supported formats: PNG, JPG, JPEG</p>
+                            </div>
+                            <div x-show="fileName" x-cloak class="text-blue-400">
+                                Selected: <span x-text="fileName"></span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Diagnostic Details Section -->
+            <div class="space-y-4">
+                <h3 class="text-2xl font-semibold text-blue-400">Diagnostic Details</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="cdr" class="block text-sm font-medium text-gray-300 mb-2">CDR Value (if known)</label>
+                        <input type="number" id="cdr" name="cdr" step="0.01" min="0" max="1"
+                            class="w-full px-4 py-2 rounded-lg bg-white bg-opacity-10 border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400"
+                            placeholder="0.00 - 1.00">
+                    </div>
+                    <div>
+                        <label for="eye_type" class="block text-sm font-medium text-gray-300 mb-2">Eye Type</label>
+                        <select id="eye_type" name="eye_type"
+                            class="w-full px-4 py-2 rounded-lg bg-white bg-opacity-10 border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white">
+                            <option value="">Select Eye Type</option>
+                            <option value="OS">Left Eye (OS)</option>
+                            <option value="OD">Right Eye (OD)</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="eye_set" class="block text-sm font-medium text-gray-300 mb-2">Eye Set</label>
+                        <input type="text" id="eye_set" name="eye_set"
+                            class="w-full px-4 py-2 rounded-lg bg-white bg-opacity-10 border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white placeholder-gray-400"
+                            placeholder="e.g., ORIGA, RIM-ONE">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2">
+                <i class="fas fa-microscope"></i>
+                <span>Analyze Image</span>
+            </button>
+        </form>
+    </div>
+
+    <!-- Instructions Section -->
+    <div class="mt-8 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-8">
+        <h3 class="text-2xl font-semibold text-blue-400 mb-4">Instructions</h3>
+        <div class="space-y-4 text-gray-300">
+            <div class="flex items-start space-x-4">
+                <div class="bg-blue-500 p-2 rounded-lg">
+                    <i class="fas fa-image text-white"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold">Image Requirements</h4>
+                    <p>Upload a clear, high-resolution fundus image of your eye.</p>
+                </div>
+            </div>
+            <div class="flex items-start space-x-4">
+                <div class="bg-blue-500 p-2 rounded-lg">
+                    <i class="fas fa-info-circle text-white"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold">Additional Information</h4>
+                    <p>Providing CDR value and eye type helps improve the accuracy of our analysis.</p>
+                </div>
+            </div>
+            <div class="flex items-start space-x-4">
+                <div class="bg-blue-500 p-2 rounded-lg">
+                    <i class="fas fa-exclamation-triangle text-white"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold">Important Note</h4>
+                    <p>This tool is for screening purposes only and should not replace professional medical advice.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+{% endblock %} 

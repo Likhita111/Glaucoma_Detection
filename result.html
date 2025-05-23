@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Results - Glaucoma Detection System{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 text-center">
+        Analysis Results
+    </h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Image Display -->
+        <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-6">
+            <h3 class="text-2xl font-semibold text-blue-400 mb-4">Analyzed Image</h3>
+            <img src="{{ url_for('static', filename='uploads/' + image_path) }}" alt="Analyzed Eye Image" 
+                class="w-full rounded-lg shadow-lg">
+        </div>
+
+        <!-- Results Display -->
+        <div class="space-y-6">
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-6">
+                <h3 class="text-2xl font-semibold text-blue-400 mb-4">Detection Results</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-300">Status:</span>
+                        <span class="font-bold {% if 'Positive' in prediction %}text-red-500{% else %}text-green-500{% endif %}">
+                            {{ prediction }}
+                        </span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div class="bg-blue-500 rounded-full h-2" style="width: {{ '75%' if 'Positive' in prediction else '25%' }}"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-6">
+                <h3 class="text-2xl font-semibold text-blue-400 mb-4">Recommendations</h3>
+                <div class="space-y-4">
+                    {% if 'Positive' in prediction %}
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-red-500 p-2 rounded-lg">
+                            <i class="fas fa-exclamation-circle text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-red-400">Medical Attention Recommended</h4>
+                            <p class="text-gray-300">Please consult an eye care professional for a comprehensive examination.</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-green-500 p-2 rounded-lg">
+                            <i class="fas fa-check-circle text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-green-400">No Immediate Concern</h4>
+                            <p class="text-gray-300">Continue with regular eye check-ups as recommended by your doctor.</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-500 p-2 rounded-lg">
+                            <i class="fas fa-calendar-alt text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Regular Monitoring</h4>
+                            <p class="text-gray-300">Schedule regular eye examinations for early detection and prevention.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex space-x-4">
+                <a href="{{ url_for('eye_check') }}" 
+                    class="flex-1 px-6 py-3 bg-white bg-opacity-10 rounded-lg font-semibold hover:bg-opacity-20 backdrop-filter backdrop-blur-lg text-center">
+                    New Analysis
+                </a>
+                <button onclick="window.print()" 
+                    class="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 text-center">
+                    Save Results
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="mt-8 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-6">
+        <div class="flex items-start space-x-4">
+            <div class="bg-yellow-500 p-2 rounded-lg">
+                <i class="fas fa-info-circle text-white"></i>
+            </div>
+            <div>
+                <h4 class="font-semibold text-yellow-400">Important Disclaimer</h4>
+                <p class="text-gray-300">
+                    This analysis is provided for screening purposes only and should not be considered as a definitive medical diagnosis. 
+                    Always consult with qualified healthcare professionals for proper medical advice and treatment.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+{% endblock %} 
